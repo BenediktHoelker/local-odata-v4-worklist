@@ -11,12 +11,12 @@
 		},
 		"resources": "resources.json",
 		"dataSources": {
-			"mainService": {
-				"uri": "/here/goes/your/serviceurl/",
+			"default": {
+				"uri": "/sap/timetracking/",
 				"type": "OData",
 				"settings": {
-					"odataVersion": "4.0",
-					"localUri": "localService/metadata.xml"
+					"annotations": [],
+					"odataVersion": "4.0"
 				}
 			}
 		},
@@ -68,7 +68,7 @@
 				}
 			},
 			"": {
-				"dataSource": "mainService",
+				"dataSource": "default",
 				"preload": true,
 				"settings": {
 					"operationMode": "Server",
