@@ -85,6 +85,16 @@ sap.ui.define([
 			history.go(-1);
 		},
 
+		onPressAdd: function(){
+			const oContext = this.byId("table").getBinding("items").create({
+				"firstname" : "Benedikt",
+				"surname" : "Hölker"
+			});
+
+			oContext.created().then(function(){
+				MessageToast.show("Success");
+			})
+		},
 
 		onSearch : function (oEvent) {
 			if (oEvent.getParameters().refreshButtonPressed) {

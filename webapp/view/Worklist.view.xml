@@ -12,7 +12,7 @@
 		<semantic:titleHeading>
 			<Title text="{i18n>worklistTitle}" />
 		</semantic:titleHeading>
-
+		
 		<semantic:content>
 			<Table
 				id="table"
@@ -39,6 +39,7 @@
 							search=".onSearch"
 							width="auto">
 						</SearchField>
+						<Button icon="sap-icon://add" press="onPressAdd"/>
 					</Toolbar>
 				</headerToolbar>
 
