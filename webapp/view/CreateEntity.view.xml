@@ -4,8 +4,8 @@
   xmlns:mvc="sap.ui.core.mvc">
   <Page showHeader="false" floatingFooter="true">
     <form:SimpleForm editable="true">
-      <!-- <Label labelFor="nameInput" text="{/##Projects/name@com.sap.vocabularies.Common.v1.Label}"/> -->
-      <Label labelFor="titleInput" text="Title"/>
+      <Label labelFor="titleInput" text="{/##Projects/title@com.sap.vocabularies.Common.v1.Label}"/>
+      <!-- <Label labelFor="titleInput" text="Title"/> -->
       <Input id="titleInput" value="{viewModel>/newEntity/title}"/>
       <Label labelFor="descInput" text="Description"/>
       <Input id="descInput" value="{viewModel>/newEntity/description}"/>

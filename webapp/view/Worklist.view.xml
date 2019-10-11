@@ -10,7 +10,7 @@
 		</semantic:titleHeading>
 
 		<semantic:content>
-			<Table id="table" width="auto" items="{
+			<Table id="table" mode="MultiSelect" items="{
 					path: '/Projects',
 					sorter: {
 						path: 'title',
@@ -25,6 +25,7 @@
 						<SearchField id="searchField" tooltip="{i18n>worklistSearchTooltip}" search=".onSearch" width="auto">
 						</SearchField>
 						<Button icon="sap-icon://add" press="onPressAdd"/>
+						<Button icon="sap-icon://delete" press="onPressDelete"/>
 					</Toolbar>
 				</headerToolbar>
 

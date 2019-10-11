@@ -23,56 +23,35 @@ sap.ui.define(
          * @public
          */
         onInit: function() {
-          var oViewModel;
+          const oResBundle = this.getResourceBundle();
 
           // keeps the search state
           this._aTableSearchState = [];
 
           // Model used to manipulate control states
-          oViewModel = new JSONModel({
-            worklistTableTitle: this.getResourceBundle().getText(
-              "worklistTableTitle"
-            ),
-            shareOnJamTitle: this.getResourceBundle().getText("worklistTitle"),
-            shareSendEmailSubject: this.getResourceBundle().getText(
-              "shareSendEmailWorklistSubject"
-            ),
-            shareSendEmailMessage: this.getResourceBundle().getText(
-              "shareSendEmailWorklistMessage",
-              [location.href]
-            ),
-            tableNoDataText: this.getResourceBundle().getText("tableNoDataText")
+          const oViewModel = new JSONModel({
+            worklistTableTitle: oResBundle.getText("worklistTableTitle"),
+            tableNoDataText: oResBundle.getText("tableNoDataText")
           });
+
           this.setModel(oViewModel, "worklistView");
         },
 
-        /* =========================================================== */
-        /* event handlers                                              */
-        /* =========================================================== */
-
-        /**
-         * Triggered by the table's 'updateFinished' event: after new table
-         * data is available, this handler method updates the table counter.
-         * This should only happen if the update was successful, which is
-         * why this handler is attached to 'updateFinished' and not to the
-         * table's list binding's 'dataReceived' method.
-         * @param {sap.ui.base.Event} oEvent the update finished event
-         * @public
-         */
         onUpdateFinished: function(oEvent) {
           // update the worklist's object counter after the table update
-          var sTitle,
-            oTable = oEvent.getSource(),
-            iTotalItems = oEvent.getParameter("total");
+          let sTitle;
+          const oTable = oEvent.getSource();
+          const oResBundle = this.getResourceBundle();
+          const iTotalItems = oEvent.getParameter("total");
+
           // only update the counter if the length is final and
           // the table is not empty
           if (iTotalItems && oTable.getBinding("items").isLengthFinal()) {
-            sTitle = this.getResourceBundle().getText(
-              "worklistTableTitleCount",
-              [iTotalItems]
-            );
+            sTitle = oResBundle.getText("worklistTableTitleCount", [
+              iTotalItems
+            ]);
           } else {
-            sTitle = this.getResourceBundle().getText("worklistTableTitle");
+            sTitle = oResBundle.getText("worklistTableTitle");
           }
           this.getModel("worklistView").setProperty(
             "/worklistTableTitle",
@@ -85,30 +64,26 @@ sap.ui.define(
             "Projects",
             this.byId("table").getBinding("items")
           );
-				},
-				
-        /**
-         * Event handler when a table item gets pressed
-         * @param {sap.ui.base.Event} oEvent the table selectionChange event
-         * @public
-         */
+        },
+
         onPress: function(oEvent) {
           // The source is the list item that got pressed
           this._showObject(oEvent.getSource());
         },
 
-        /**
-         * Event handler for navigating back.
-         * Navigate back in the browser history
-         * @public
-         */
         onNavBack: function() {
           // eslint-disable-next-line sap-no-history-manipulation
           history.go(-1);
-				},
-				
+        },
+
         onPressAdd: function() {
           this.getRouter().navTo("create");
+				},
+				
+        onPressDelete: function(oEvent) {
+          const oTable = this.byId("table");
+          const aSelectedContexts = oTable.getSelectedContexts();
+          aSelectedContexts.forEach(oContext => oContext.delete());
         },
 
         onSearch: function(oEvent) {
@@ -119,8 +94,8 @@ sap.ui.define(
             // refresh the list binding.
             this.onRefresh();
           } else {
-            var aTableSearchState = [];
-            var sQuery = oEvent.getParameter("query");
+            const aTableSearchState = [];
+            const sQuery = oEvent.getParameter("query");
 
             if (sQuery && sQuery.length > 0) {
               aTableSearchState = [
@@ -137,28 +112,17 @@ sap.ui.define(
          * @public
          */
         onRefresh: function() {
-          var oTable = this.byId("table");
-          oTable.getBinding("items").refresh();
+          this.byId("table")
+            .getBinding("items")
+            .refresh();
         },
 
-        /* =========================================================== */
-        /* internal methods                                            */
-        /* =========================================================== */
-
-        /**
-         * Shows the selected item on the object page
-         * On phones a additional history entry is created
-         * @param {sap.m.ObjectListItem} oItem selected Item
-         * @private
-         */
         _showObject: function(oItem) {
-          var that = this;
-
           oItem
             .getBindingContext()
             .requestCanonicalPath()
-            .then(function(sObjectPath) {
-              that.getRouter().navTo("object", {
+            .then(sObjectPath => {
+              this.getRouter().navTo("object", {
                 objectId_Old: oItem.getBindingContext().getProperty("ID"),
                 objectId: sObjectPath.slice("/Projects".length) // /Products(3)->(3)
               });
@@ -171,10 +135,12 @@ sap.ui.define(
          * @private
          */
         _applySearch: function(aTableSearchState) {
-          var oTable = this.byId("table"),
-            oViewModel = this.getModel("worklistView");
-          oTable.getBinding("items").filter(aTableSearchState, "Application");
-          // changes the noDataText of the list in case there are no filter results
+          const oTable = this.byId("table");
+          const oViewModel = this.getModel("worklistView");
+					
+					oTable.getBinding("items").filter(aTableSearchState, "Application");
+					
+					// changes the noDataText of the list in case there are no filter results
           if (aTableSearchState.length !== 0) {
             oViewModel.setProperty(
               "/tableNoDataText",
