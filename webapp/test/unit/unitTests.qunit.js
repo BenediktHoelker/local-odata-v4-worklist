@@ -5,7 +5,7 @@ sap.ui.getCore().attachInit(function () {
 	"use strict";
 
 	sap.ui.require([
-		"iot/timetracking-worklist/test/unit/AllTests"
+		"iot/timetracking-projects-ui/test/unit/AllTests"
 	], function () {
 		QUnit.start();
 	});

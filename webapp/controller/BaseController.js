@@ -8,7 +8,26 @@ sap.ui.define([
 	// shortcut for sap.m.URLHelper
 	var URLHelper = mobileLibrary.URLHelper;
 
-	return Controller.extend("iot.timetracking-worklist.controller.BaseController", {
+	return Controller.extend("iot.timetracking-projects-ui.controller.BaseController", {
+
+		getListBinding: function(sName, sEntity) {
+			const oListBinding = this.getOwnerComponent()._oListBindings[sName];
+
+			if (!oListBinding) {
+				return this.getModel().bindList(sEntity);
+			}
+
+			return oListBinding;
+		},
+
+		setListBinding: function(sName, oListBinding) {
+			this.getOwnerComponent()._oListBindings[sName] = oListBinding;
+		},
+		
+		_deepClone: function(object){
+			return JSON.parse(JSON.stringify(object));
+		},
+		
 		/**
 		 * Convenience method for accessing the router.
 		 * @public

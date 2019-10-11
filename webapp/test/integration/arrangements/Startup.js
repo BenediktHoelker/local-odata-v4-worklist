@@ -3,7 +3,7 @@ sap.ui.define([
 ], function(Opa5) {
 "use strict";
 
-return Opa5.extend("iot.timetracking-worklist.test.integration.arrangements.Startup", {
+return Opa5.extend("iot.timetracking-projects-ui.test.integration.arrangements.Startup", {
 
 		/**
 		  * Initializes mock server, then starts the app component
@@ -21,7 +21,7 @@ return Opa5.extend("iot.timetracking-worklist.test.integration.arrangements.Star
 			// start the app UI component
 			this.iStartMyUIComponent({
 				componentConfig: {
-					name: "iot.timetracking-worklist",
+					name: "iot.timetracking-projects-ui",
 					async: true
 				},
 				hash: oOptions.hash,

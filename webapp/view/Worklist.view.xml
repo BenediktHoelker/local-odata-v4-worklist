@@ -1,61 +1,51 @@
-<mvc:View
-	controllerName="iot.timetracking-worklist.controller.Worklist"
-	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc"
+<mvc:View controllerName="iot.timetracking-projects-ui.controller.Worklist" 
+	xmlns="sap.m" 
+	xmlns:mvc="sap.ui.core.mvc" 
 	xmlns:semantic="sap.f.semantic">
 
-	<semantic:SemanticPage
-		id="page"
-		headerPinnable="false"
-		toggleHeaderOnTitleClick="false">
+	<semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false">
 
 		<semantic:titleHeading>
 			<Title text="{i18n>worklistTitle}" />
 		</semantic:titleHeading>
-		
+
 		<semantic:content>
-			<Table
-				id="table"
-				width="auto"
-				items="{
-					path: '/Employees',
+			<Table id="table" width="auto" items="{
+					path: '/Projects',
 					sorter: {
-						path: 'surname',
+						path: 'title',
 						descending: false
 					}
-				}"
-				noDataText="{worklistView>/tableNoDataText}"
-				growing="true"
-				growingScrollToLoad="true"
-				updateFinished=".onUpdateFinished">
+				}" noDataText="{worklistView>/tableNoDataText}" growing="true" growingScrollToLoad="true" updateFinished=".onUpdateFinished">
 
 				<headerToolbar>
 					<Toolbar>
 						<Title id="tableHeader" text="{worklistView>/worklistTableTitle}"/>
 						<ToolbarSpacer />
-						<SearchField
-							id="searchField"
-							tooltip="{i18n>worklistSearchTooltip}"
-							search=".onSearch"
-							width="auto">
+						<SearchField id="searchField" tooltip="{i18n>worklistSearchTooltip}" search=".onSearch" width="auto">
 						</SearchField>
 						<Button icon="sap-icon://add" press="onPressAdd"/>
 					</Toolbar>
 				</headerToolbar>
 
 				<columns>
-					<Column id="nameColumn">
-						<Text text="{i18n>tableNameColumnTitle}" id="nameColumnTitle"/>
+					<Column>
+						<Text text="Title"/>
+					</Column>
+					<Column>
+						<Text text="Description"/>
+					</Column>
+					<Column>
+						<Text text="Factor"/>
 					</Column>
 				</columns>
 
 				<items>
-					<ColumnListItem
-						type="Navigation"
-						press=".onPress">
+					<ColumnListItem type="Navigation" press=".onPress">
 						<cells>
-							<ObjectIdentifier
-								title="{surname}"/>
+							<ObjectIdentifier title="{title}"/>
+							<Text text="{description}"/>
+							<ObjectNumber number="{billingFactor}"/>
 						</cells>
 					</ColumnListItem>
 				</items>

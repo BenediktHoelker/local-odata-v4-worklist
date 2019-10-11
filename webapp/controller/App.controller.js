@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (BaseController) {
 	"use strict";
 
-	return BaseController.extend("iot.timetracking-worklist.controller.App", {
+	return BaseController.extend("iot.timetracking-projects-ui.controller.App", {
 
 		onInit : function () {
 			// apply content density mode to root view

@@ -1,5 +1,5 @@
 sap.ui.define([
-"iot/timetracking-worklist/model/formatter"
+"iot/timetracking-projects-ui/model/formatter"
 ], function (formatter) {
 	"use strict";
 

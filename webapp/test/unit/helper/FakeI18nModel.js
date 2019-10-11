@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (Model) {
 	"use strict";
 
-	return Model.extend("iot.timetracking-worklist.test.unit.helper.FakeI18nModel", {
+	return Model.extend("iot.timetracking-projects-ui.test.unit.helper.FakeI18nModel", {
 
 		constructor : function (mTexts) {
 			Model.call(this);

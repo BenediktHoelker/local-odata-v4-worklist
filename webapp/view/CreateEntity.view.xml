@@ -1,0 +1,23 @@
+<mvc:View controllerName="iot.timetracking-projects-ui.controller.CreateEntity" 
+  xmlns="sap.m" 
+  xmlns:form="sap.ui.layout.form" 
+  xmlns:mvc="sap.ui.core.mvc">
+  <Page showHeader="false" floatingFooter="true">
+    <form:SimpleForm editable="true">
+      <!-- <Label labelFor="nameInput" text="{/##Projects/name@com.sap.vocabularies.Common.v1.Label}"/> -->
+      <Label labelFor="titleInput" text="Title"/>
+      <Input id="titleInput" value="{viewModel>/newEntity/title}"/>
+      <Label labelFor="descInput" text="Description"/>
+      <Input id="descInput" value="{viewModel>/newEntity/description}"/>
+      <Label labelFor="factorInput" text="Factor"/>
+      <Input id="factorInput" value="{viewModel>/newEntity/billingFactor}"/>
+    </form:SimpleForm>
+    <footer>
+      <Toolbar>
+        <ToolbarSpacer/>
+        <Button text="Speichern" press="onPressSave" type="Emphasized"/>
+        <Button text="Abbrechen" press="onPressCancel"/>
+      </Toolbar>
+    </footer>
+  </Page>
+</mvc:View>

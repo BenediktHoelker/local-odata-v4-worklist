@@ -1,5 +1,5 @@
 sap.ui.define([
-	"iot/timetracking-worklist/model/models",
+	"iot/timetracking-projects-ui/model/models",
 	"sap/ui/Device"
 ], function (models, Device) {
 	"use strict";

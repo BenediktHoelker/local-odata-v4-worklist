@@ -6,7 +6,7 @@ sap.ui.define([
 ], function (UIComponent, Device, models, ErrorHandler) {
 	"use strict";
 
-	return UIComponent.extend("iot.timetracking-worklist.Component", {
+	return UIComponent.extend("iot.timetracking-projects-ui.Component", {
 
 		metadata : {
 			manifest: "json"
@@ -25,6 +25,8 @@ sap.ui.define([
 			// initialize the error handler with the component
 			this._oErrorHandler = new ErrorHandler(this);
 
+			this._oListBindings = {};
+
 			// set the device model
 			this.setModel(models.createDeviceModel(), "device");
 
@@ -40,6 +42,13 @@ sap.ui.define([
 		 */
 		destroy : function () {
 			this._oErrorHandler.destroy();
+
+			Object.values(this._oListBindings).forEach(
+				oListBinding =>
+					typeof this._oListBinding === "function" &&
+					this._oListBinding.destroy()
+			);
+			
 			// call the base component's destroy function
 			UIComponent.prototype.destroy.apply(this, arguments);
 		},
