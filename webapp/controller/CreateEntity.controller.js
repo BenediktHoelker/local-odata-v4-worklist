@@ -20,7 +20,7 @@ sap.ui.define(
           this.getView().setModel(oViewModel, "viewModel");
 
           this.getRouter()
-            .getRoute("create")
+            .getRoute("create") 
             .attachPatternMatched(this._onRouteMatched, this);
         },
 
