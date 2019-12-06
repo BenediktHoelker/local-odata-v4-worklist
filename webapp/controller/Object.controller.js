@@ -58,7 +58,7 @@ sap.ui.define(
 
         _onBindingChange: function() {
           const oViewModel = this.getModel("objectView");
-          const oElementBinding = oView.getElementBinding();
+          const oElementBinding = this.getView().getElementBinding();
 
           // No data for the binding
           if (!oElementBinding.getBoundContext()) {

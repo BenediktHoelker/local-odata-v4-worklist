@@ -1,16 +1,11 @@
 <mvc:View controllerName="iot.timetracking-projects-ui.controller.Object" 
 	xmlns="sap.m" 
-	xmlns:mvc="sap.ui.core.mvc" 
-	xmlns:semantic="sap.f.semantic">
+	xmlns:mvc="sap.ui.core.mvc" >
 
-	<semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false" busy="{objectView>/busy}" busyIndicatorDelay="{objectView>/delay}">
-
-		<semantic:titleHeading>
-			<Title text="{title}" />
-		</semantic:titleHeading>
-
+		<Page title="{title}" busy="{objectView>/busy}" busyIndicatorDelay="{objectView>/delay}">
+	<content>
 			<Table id="table" mode="MultiSelect" items="{
-					path: '/Employees',
+					path: 'members',
 					sorter: {
 						path: 'name',
 						descending: false
@@ -31,13 +26,8 @@
 					</ColumnListItem>
 				</items>
 			</Table>
-		</semantic:content>
+		</content>
 
-		<semantic:sendEmailAction>
-			<semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress"/>
-		</semantic:sendEmailAction>
-
-
-	</semantic:SemanticPage>
+	</Page>
 
 </mvc:View>
