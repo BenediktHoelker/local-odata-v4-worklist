@@ -34,7 +34,7 @@
 						<Text text="Title"/>
 					</Column>
 					<Column>
-						<Text text="Description"/>
+						<Text text="Beschreibung"/>
 					</Column>
 					<Column>
 						<Text text="Faktor"/>

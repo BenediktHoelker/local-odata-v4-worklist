@@ -1,16 +1,10 @@
 <mvc:View controllerName="iot.timetracking-projects-ui.controller.Object" 
 	xmlns="sap.m" 
-	xmlns:mvc="sap.ui.core.mvc" >
+	xmlns:mvc="sap.ui.core.mvc">
 
-		<Page title="{title}" busy="{objectView>/busy}" busyIndicatorDelay="{objectView>/delay}">
-	<content>
-			<Table id="table" mode="MultiSelect" items="{
-					path: 'members',
-					sorter: {
-						path: 'name',
-						descending: false
-					}
-				}" growing="true" growingScrollToLoad="true" >
+	<Page title="{title}" busy="{objectView>/busy}" busyIndicatorDelay="{objectView>/delay}">
+		<content>
+			<Table id="table" mode="MultiSelect" growing="true" growingScrollToLoad="true">
 
 				<columns>
 					<Column>
@@ -18,13 +12,6 @@
 					</Column>
 				</columns>
 
-				<items>
-					<ColumnListItem type="Navigation" press=".onPress" selected="{}">
-						<cells>
-							<ObjectIdentifier title="{name}"/>
-						</cells>
-					</ColumnListItem>
-				</items>
 			</Table>
 		</content>
 

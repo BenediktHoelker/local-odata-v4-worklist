@@ -3,9 +3,10 @@ sap.ui.define(
     "./BaseController",
     "sap/ui/model/json/JSONModel",
     "sap/ui/core/routing/History",
+    "sap/ui/model/Sorter",
     "../model/formatter"
   ],
-  function(BaseController, JSONModel, History, formatter) {
+  function(BaseController, JSONModel, History, Sorter, formatter) {
     "use strict";
 
     return BaseController.extend(
@@ -16,7 +17,8 @@ sap.ui.define(
         onInit: function() {
           const oViewModel = new JSONModel({
             busy: true,
-            delay: 0
+            delay: 0,
+            project_ID: ""
           });
 
           this.getRouter()
@@ -41,6 +43,22 @@ sap.ui.define(
           const sObjectId = oEvent.getParameter("arguments").objectId;
 
           this._bindView("/Projects" + sObjectId);
+
+          this.byId("table").bindItems({
+            path: "/ProjectMembers",
+            parameters: {
+              $$operationMode: "Server",
+              $filter: `projectID eq ${sObjectId}`
+            },
+            sorter: new Sorter({
+              path: "name",
+              descending: false
+            }),
+            template: sap.ui.xmlfragment(
+              "iot.timetracking-projects-ui.view.fragments.EmployeeListItem",
+              this
+            )
+          });
         },
 
         _bindView: function(sObjectPath) {
@@ -73,6 +91,10 @@ sap.ui.define(
             .requestObject()
             .then(() => {
               oViewModel.setProperty("/busy", false);
+              oViewModel.setProperty(
+                "/project_ID",
+                oElementBinding.getBoundContext().getProperty("ID")
+              );
             });
         }
       }

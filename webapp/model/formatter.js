@@ -14,6 +14,10 @@ sap.ui.define([] , function () {
 				return "";
 			}
 			return parseFloat(sValue).toFixed(2);
+		},
+
+		isSelected: function(sId, sId2){
+			return sId === sId2;
 		}
 
 	};
