@@ -20,7 +20,7 @@ sap.ui.define(
           this.getView().setModel(oViewModel, "viewModel");
 
           this.getRouter()
-            .getRoute("create") 
+            .getRoute("create")
             .attachPatternMatched(this._onRouteMatched, this);
         },
 
@@ -29,9 +29,20 @@ sap.ui.define(
         },
 
         onPressSave: function() {
+          const sProjectId = this._getUUID();
           const oNewEntity = this.getModel("viewModel").getProperty(
             "/newEntity"
           );
+
+          const aMembers = this.byId("membersSelect")
+            .getSelectedItems()
+            .map(item => item.getBindingContext().getObject())
+            .map(employee => ({
+              employee_ID: employee.ID
+            }));
+
+          oNewEntity.members_db = aMembers;
+
           const oContext = this.getListBinding("Projects").create(oNewEntity);
 
           oContext.created().then(() => this.getRouter().navTo("worklist"));

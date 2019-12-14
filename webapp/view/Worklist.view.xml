@@ -6,7 +6,7 @@
 	<semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false">
 
 		<semantic:titleHeading>
-			<Title text="{i18n>worklistTitle}" />
+			<Title title="Zeiterfassung"/>
 		</semantic:titleHeading>
 
 		<semantic:content>

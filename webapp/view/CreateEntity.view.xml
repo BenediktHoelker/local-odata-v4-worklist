@@ -5,14 +5,13 @@
   xmlns:mvc="sap.ui.core.mvc">
   <Page showHeader="false" floatingFooter="true">
     <form:SimpleForm editable="true">
-      <Label labelFor="titleInput" text="{/##Projects/title@com.sap.vocabularies.Common.v1.Label}"/>
-      <!--   <Label labelFor="titleInput" text="Title"/> -->
+      <Label labelFor="titleInput" text="Titel"/>
       <Input id="titleInput" value="{viewModel>/newEntity/title}"/>
-      <Label labelFor="descInput" text="Description"/>
+      <Label labelFor="descInput" text="Beschreibung"/>
       <Input id="descInput" value="{viewModel>/newEntity/description}"/>
-      <Label labelFor="factorInput" text="Factor"/>
+      <Label labelFor="factorInput" text="Faktor"/>
       <Input id="factorInput" value="{viewModel>/newEntity/billingFactor}"/>
-      <Label labelFor="membersSelect" text="Members"/>
+      <Label labelFor="membersSelect" text="Teilnehmer"/>
       <MultiComboBox id="membersSelect" items="{/Employees}">
         <core:Item text="{name}" key="{ID}"/>
       </MultiComboBox>
