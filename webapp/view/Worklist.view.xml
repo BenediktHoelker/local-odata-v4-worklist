@@ -36,10 +36,10 @@
 						<Text text="Kunde"/>
 					</Column>
 					<Column hAlign="End">
-						<Text text="Faktor"/>
+						<Text text="Faktor" wrapping="false"/>
 					</Column>
 					<Column hAlign="End">
-						<Text text="Std."/>
+						<Text text="Stunden" wrapping="false"/>
 					</Column>
 				</columns>
 
