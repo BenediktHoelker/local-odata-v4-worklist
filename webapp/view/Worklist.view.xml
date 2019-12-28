@@ -10,7 +10,7 @@
 		</semantic:titleHeading>
 
 		<semantic:content>
-			<Table id="table" mode="MultiSelect" items="{
+			<Table id="table" mode="MultiSelect" fixedLayout="false" items="{
 					path: '/Projects',
 					sorter: {
 						path: 'title',
@@ -20,10 +20,9 @@
 
 				<headerToolbar>
 					<Toolbar>
-						<Title id="tableHeader" text="{worklistView>/worklistTableTitle}"/>
-						<ToolbarSpacer />
-						<SearchField id="searchField" tooltip="{i18n>worklistSearchTooltip}" search=".onSearch" width="auto">
-						</SearchField>
+						<Title id="tableHeader" text="{worklistView>/worklistTableTitle}" width="100%"/>
+						<ToolbarSpacer/>
+						<SearchField id="searchField" tooltip="{i18n>worklistSearchTooltip}" search=".onSearch"/>
 						<Button icon="sap-icon://add" press="onPressAdd"/>
 						<Button icon="sap-icon://delete" press="onPressDelete"/>
 					</Toolbar>
@@ -31,24 +30,24 @@
 
 				<columns>
 					<Column>
-						<Text text="Title"/>
+						<Text text="Projekt"/>
 					</Column>
-					<Column>
-						<Text text="Beschreibung"/>
+					<Column demandPopin="true" minScreenWidth="desktop">
+						<Text text="Kunde"/>
 					</Column>
-					<Column>
+					<Column hAlign="End">
 						<Text text="Faktor"/>
 					</Column>
-					<Column>
-						<Text text="Fakt. Stunden"/>
+					<Column hAlign="End">
+						<Text text="Std."/>
 					</Column>
 				</columns>
 
 				<items>
 					<ColumnListItem type="Navigation" press=".onPress">
 						<cells>
-							<ObjectIdentifier title="{title}"/>
-							<Text text="{description}"/>
+							<ObjectIdentifier title="{title}" text="{description}"/>
+							<Text text="{customer/name}"/>
 							<ObjectNumber number="{billingFactor}"/>
 							<ObjectNumber number="{
 								path: 'totalTime', 
